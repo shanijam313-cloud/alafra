@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Soft off-white background */
+    --background: 60 20% 98%;
+    --foreground: 158 20% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 158 20% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 158 20% 16%;
+
+    /* Primary: light Islamic green */
+    --primary: 152 45% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: soft green tint */
+    --secondary: 152 40% 92%;
+    --secondary-foreground: 158 20% 16%;
+
+    /* Muted grays */
+    --muted: 158 12% 94%;
+    --muted-foreground: 158 12% 38%;
+
+    /* Accent as elegant gold */
+    --accent: 45 85% 55%;
+    --accent-foreground: 24 100% 12%;
+
+    /* Destructive */
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Surfaces */
+    --border: 158 16% 88%;
+    --input: 158 16% 88%;
+    --ring: 152 45% 36%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar (not heavily used but kept consistent) */
+    --sidebar-background: 60 20% 98%;
+    --sidebar-foreground: 158 20% 16%;
+    --sidebar-primary: 152 45% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 85% 55%;
+    --sidebar-accent-foreground: 24 100% 12%;
+    --sidebar-border: 158 16% 88%;
+    --sidebar-ring: 152 45% 36%;
+  }
+
+  .dark {
+    --background: 158 25% 8%;
+    --foreground: 60 20% 98%;
+
+    --card: 158 25% 10%;
+    --card-foreground: 60 20% 98%;
+
+    --popover: 158 25% 10%;
+    --popover-foreground: 60 20% 98%;
+
+    --primary: 152 50% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 158 18% 16%;
+    --secondary-foreground: 60 20% 98%;
+
+    --muted: 158 18% 14%;
+    --muted-foreground: 158 12% 70%;
+
+    --accent: 45 85% 55%;
+    --accent-foreground: 24 100% 12%;
+
+    --destructive: 0 70% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 158 18% 18%;
+    --input: 158 18% 18%;
+    --ring: 152 45% 46%;
+
+    --sidebar-background: 158 25% 8%;
+    --sidebar-foreground: 60 20% 98%;
+    --sidebar-primary: 152 50% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 85% 55%;
+    --sidebar-accent-foreground: 24 100% 12%;
+    --sidebar-border: 158 18% 18%;
+    --sidebar-ring: 152 45% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background-image:
+      radial-gradient(hsl(var(--primary)/0.06) 1px, transparent 1px),
+      radial-gradient(hsl(var(--accent)/0.08) 1px, transparent 1px);
+    background-position: 0 0, 16px 16px;
+    background-size: 32px 32px;
+  }
+
+  :root.lang-ur body, html.lang-ur body {
+    font-family: "Noto Sans Arabic", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
+
+@layer utilities {
+  .font-urdu-heading {
+    font-family: "Noto Nastaliq Urdu", serif;
+  }
+
+  .hero-bg { position: absolute; }
+  .hero-bg .slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; animation: heroFade 18s infinite ease-in-out; transform: scale(1.06); filter: saturate(1.05) contrast(1.03); will-change: opacity, transform; }
+  .hero-bg .slide:nth-child(1){ animation-delay:0s; }
+  .hero-bg .slide:nth-child(2){ animation-delay:6s; }
+  .hero-bg .slide:nth-child(3){ animation-delay:12s; }
+
+  @keyframes heroFade {
+    0% { opacity:0; transform: scale(1.04) translateY(0px); }
+    6% { opacity:1; }
+    28% { opacity:1; transform: scale(1.08) translateY(-4px); }
+    33% { opacity:0; }
+    100% { opacity:0; }
+  }
+
+  .pattern-mosaic {
+    background-image:
+      linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.05) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.05) 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+  }
+}
