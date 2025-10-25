@@ -7,10 +7,6 @@
       "config": {
         "distDir": "dist/spa"
       }
-    },
-    {
-      "src": "api/**/*.ts",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -19,7 +15,31 @@
       "dest": "/api/$1"
     },
     {
+      "src": "/assets/(.*)",
+      "headers": {
+        "Cache-Control": "max-age=31536000, immutable"
+      },
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/hero/(.*)\\.(avif|webp|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot|otf)",
+      "headers": {
+        "Cache-Control": "max-age=31536000, immutable"
+      },
+      "dest": "/hero/$1.$2"
+    },
+    {
+      "src": "/(.*)\\.(js|css|avif|webp|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|otf)",
+      "headers": {
+        "Cache-Control": "max-age=31536000, immutable"
+      },
+      "dest": "/$1.$2"
+    },
+    {
       "src": "/(.*)",
+      "headers": {
+        "Cache-Control": "no-cache"
+      },
       "dest": "/index.html"
     }
   ],
