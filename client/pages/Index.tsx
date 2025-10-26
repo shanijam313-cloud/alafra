@@ -72,19 +72,21 @@ export default function Index() {
         </div>
         <div className="container mx-auto grid gap-8 md:grid-cols-2 items-center">
           <div className="space-y-6 text-center md:text-right">
-            <h1 className="font-urdu-heading text-4xl md:text-6xl leading-tight tracking-wide text-white drop-shadow-[0_15px_45px_rgba(0,0,0,0.65)]">
+            <h1 className="font-urdu-heading text-5xl md:text-7xl leading-tight tracking-wide text-white drop-shadow-[0_20px_50px_rgba(0,0,0,0.75)] font-bold">
               {lang === "ur" ? t("hero_title") : t("hero_title")}
             </h1>
-            <p className="text-foreground/80 text-base md:text-lg">
+            <p className="text-foreground/90 text-lg md:text-xl font-medium">
               {t("hero_sub")}
             </p>
-            <div className="flex flex-col md:flex-row gap-3 justify-center md:justify-end">
+            <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-end mt-8">
               <a href="/admissions">
-                <Button className="rounded-full px-6 py-6 text-sm md:text-base">{t("cta_apply")}</Button>
+                <Button className="rounded-full px-8 py-7 text-lg md:text-xl font-bold shadow-[0_20px_50px_-20px_rgba(220,38,38,0.65)] hover:shadow-[0_25px_60px_-15px_rgba(220,38,38,0.8)] transition-all duration-300 transform hover:scale-105">
+                  {t("cta_apply")}
+                </Button>
               </a>
               <Button
                 variant="outline"
-                className="rounded-full border-red-500/60 text-red-300 hover:bg-red-500/15 hover:text-red-100 px-8 py-6 text-sm md:text-base"
+                className="rounded-full border-red-500/80 text-red-200 hover:bg-red-500/25 hover:text-white px-8 py-7 text-lg md:text-xl font-bold border-2 shadow-[0_20px_50px_-20px_rgba(220,38,38,0.55)] hover:shadow-[0_25px_60px_-15px_rgba(220,38,38,0.7)] transition-all duration-300 transform hover:scale-105"
                 onClick={() => setDonationOpen(true)}
               >
                 {lang === "ur" ? "ابھی عطیہ دیں" : "Donate Now"}
