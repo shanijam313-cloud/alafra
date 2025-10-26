@@ -17,7 +17,6 @@ import {
   Clock,
   GraduationCap,
   Laptop,
-  PiggyBank,
   Users as UsersIcon,
 } from "lucide-react";
 
@@ -53,7 +52,7 @@ export default function Index() {
     {
       title: "Affordable",
       desc: "معقول فیس",
-      Icon: PiggyBank,
+      Icon: UsersIcon, // PiggyBank icon ko hata kar UsersIcon use kiya
     },
   ] as const;
 
@@ -141,6 +140,55 @@ export default function Index() {
         </DialogContent>
       </Dialog>
 
+      <section className="py-16">
+        <div className="container mx-auto">
+          <div className="grid gap-8 rounded-3xl border border-red-500/25 bg-neutral-950/90 p-8 shadow-[0_36px_78px_-30px_rgba(220,38,38,0.45)] md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-red-500/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-red-200">
+                {lang === "ur" ? "نئی سہولت" : "New Service"}
+              </div>
+              <h2 className="font-urdu-heading text-3xl text-white">
+                {lang === "ur" ? "آن لائن روحانی علاج" : "Online Rohani Ilaj"}
+              </h2>
+              <p className="text-neutral-200 leading-relaxed">
+                {lang === "ur"
+                  ? "استاد محمد طیب صاحب کی زیر نگرانی مستند روحانی عملیات، وظائف اور تعویذات کے ذریعے مسائل کا حل۔ کالا جادو، بندشیں، رشتوں کے مسائل یا نظر بد ہو، مکمل رہنمائی کے ساتھ آپ گھر بیٹھے علاج حاصل کریں۔"
+                  : "Receive authentic spiritual healing, Istikhara guidance, and tailored Taweezat under the supervision of Ustadh Muhammad Tayyab. Whether you face black magic, personal blockages, or family issues, get detailed help from the comfort of your home."}
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button
+                  asChild
+                  className="rounded-full bg-red-600 px-6 shadow-[0_30px_60px_-28px_rgba(220,38,38,0.55)] hover:bg-red-500"
+                >
+                  <a href="/rohani-ilaj">
+                    {lang === "ur" ? "تفصیل دیکھیں" : "Explore Rohani Ilaj"}
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="rounded-full border-red-500/60 text-red-200 hover:bg-red-500/15 hover:text-red-100 px-6"
+                  asChild
+                >
+                  <a href="https://wa.me/923353503511" target="_blank" rel="noopener noreferrer">
+                    {lang === "ur" ? "واٹس ایپ پر رابطہ" : "Chat on WhatsApp"}
+                  </a>
+                </Button>
+              </div>
+            </div>
+            <div className="relative h-full">
+              <div className="relative overflow-hidden rounded-3xl border border-red-500/25 bg-black/70 shadow-[0_40px_80px_-34px_rgba(220,38,38,0.55)]">
+                <img
+                  src="/hero/Rohani-Ilaj.jpg"
+                  alt={lang === "ur" ? "روحانی علاج" : "Rohani Ilaj"}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="py-14">
         <div className="container mx-auto">
@@ -222,7 +270,7 @@ export default function Index() {
               price={lang === "ur" ? "$49 / ماہ" : "$49/mo"}
               image="/course/WhatsApp Image 2025-10-13 at 20.44.46_be5776ad.jpg"
               theme="emerald"
-              lang={lang}
+              lang={lang as "en" | "ur"} // Type assertion to fix the error
               href={`/admissions?course=${encodeURIComponent("Noorani Qaida")}`}
             />
             <CourseCard
@@ -236,7 +284,7 @@ export default function Index() {
               price={lang === "ur" ? "$69 / ماہ" : "$69/mo"}
               image="/course/WhatsApp Image 2025-10-13 at 20.44.33_59e075c2.jpg"
               theme="teal"
-              lang={lang}
+              lang={lang as "en" | "ur"} // Type assertion to fix the error
               href={`/admissions?course=${encodeURIComponent("Qur'an with Tajweed")}`}
             />
             <CourseCard
@@ -250,7 +298,7 @@ export default function Index() {
               price={lang === "ur" ? "$89 / ماہ" : "$89/mo"}
               image="/course/WhatsApp Image 2025-10-13 at 20.44.20_d41950c3.jpg"
               theme="cyan"
-              lang={lang}
+              lang={lang as "en" | "ur"} // Type assertion to fix the error
               href={`/admissions?course=${encodeURIComponent("Hifz Qur'an")}`}
             />
           </div>

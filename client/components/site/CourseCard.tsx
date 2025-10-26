@@ -102,15 +102,7 @@ export default function CourseCard({
 
       <div className="mt-3 flex items-start justify-between gap-3 sm:mt-4">
         <h3 className="text-base font-semibold text-emerald-900 sm:text-lg">{title}</h3>
-        <span
-          className={cn(
-            "whitespace-nowrap rounded-full border px-2 py-1 text-xs font-medium sm:px-3 sm:text-sm",
-            styles.badge,
-          )}
-        >
-          <span className="hidden sm:inline">{durationLabel} · </span>
-          {duration}
-        </span>
+        {/* Duration tag removed as per user request */}
       </div>
 
       <p className="mt-2 text-xs text-emerald-800/80 sm:text-sm">{description}</p>

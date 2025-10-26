@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Admissions from "./pages/Admissions";
 import Contact from "./pages/Contact";
+import RohaniIlaj from "./pages/RohaniIlaj";
 import Layout from "@/components/site/Layout";
 import { I18nProvider } from "@/lib/i18n";
 
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/courses" element={<Courses />} />
               <Route path="/admissions" element={<Admissions />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/rohani-ilaj" element={<RohaniIlaj />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

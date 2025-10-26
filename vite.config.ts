@@ -15,6 +15,17 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist/spa",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tooltip'],
+          utils: ['lucide-react', 'clsx', 'tailwind-merge']
+        }
+      }
+    },
+    sourcemap: mode === 'development',
+    minify: mode === 'production' ? 'esbuild' : false,
   },
   plugins: [react(), expressPlugin()],
   resolve: {
@@ -23,6 +34,9 @@ export default defineConfig(({ mode }) => ({
       "@shared": path.resolve(__dirname, "./shared"),
     },
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom']
+  }
 }));
 
 function expressPlugin(): Plugin {

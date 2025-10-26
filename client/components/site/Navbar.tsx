@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, Sparkles } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ChevronDown, Menu, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -14,10 +15,54 @@ export default function Navbar() {
     { key: "nav_about", to: "/about" },
     { key: "nav_courses", to: "/courses" },
     { key: "nav_admissions", to: "/admissions" },
+    { key: "nav_rohani_ilaj", to: "/rohani-ilaj" },
     { key: "nav_contact", to: "/contact" },
   ] as const;
   const navLinkClasses =
     "px-3 py-2 text-sm font-medium rounded-full transition-all duration-200 text-neutral-200/90";
+
+  const languages = [
+    { code: "en" as const, label: t("english"), flag: "🇺🇸" },
+    { code: "ur" as const, label: t("urdu"), flag: "🇵🇰" },
+    { code: "ar" as const, label: t("arabic"), flag: "🇸🇦" },
+  ];
+
+  const activeLanguage = languages.find((option) => option.code === lang) ?? languages[0];
+
+  const renderLanguageMenu = () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          className="h-9 rounded-full border-neutral-700 bg-neutral-900/80 text-xs font-medium text-neutral-200 shadow-sm transition-colors hover:bg-red-500/10 hover:text-red-400"
+        >
+          <span className="flex items-center gap-2">
+            <span aria-hidden>{activeLanguage.flag}</span>
+            <span>{activeLanguage.label}</span>
+            <ChevronDown className="h-3.5 w-3.5" aria-hidden />
+          </span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[10rem] border-neutral-700 bg-neutral-900/95 text-neutral-200">
+        {languages.map((option) => (
+          <DropdownMenuItem
+            key={option.code}
+            className={cn(
+              "flex items-center gap-2 text-sm focus:bg-red-500/20 focus:text-red-200",
+              option.code === lang && "bg-red-500/15 text-red-200",
+            )}
+            onSelect={() => {
+              setLang(option.code);
+              setOpen(false);
+            }}
+          >
+            <span aria-hidden>{option.flag}</span>
+            <span>{option.label}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-red-500/40 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 backdrop-blur-xl shadow-[0_28px_58px_-28px_rgba(220,38,38,0.55)]">
@@ -52,7 +97,7 @@ export default function Navbar() {
             "md:block absolute md:static top-full inset-x-0 md:inset-auto bg-neutral-950/95 md:bg-transparent border-b md:border-none shadow-[0_18px_42px_-30px_rgba(220,38,38,0.35)] md:shadow-none supports-[backdrop-filter]:backdrop-blur-xl",
           )}
         >
-          <div className="container mx-auto md:flex md:items-center md:gap-2 py-4 md:py-0">
+          <div className="container mx-auto md:flex md:items-center md:gap-3 py-4 md:py-0">
             <ul className="flex flex-col md:flex-row md:items-center gap-1 md:gap-1">
               {navItems.map((item) => (
                 <li key={item.to}>
@@ -83,13 +128,9 @@ export default function Navbar() {
           </div>
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
-          <button
-            onClick={() => setLang(lang === "en" ? "ur" : "en")}
-            className="text-xs px-3 py-1 rounded-full border border-neutral-700 bg-neutral-900/80 text-neutral-200 shadow-sm transition-colors hover:bg-red-500/10 hover:text-red-400"
-          >
-            {lang === "en" ? "اردو" : "English"}
-          </button>
+        {/* Sirf ek language switcher button - mobile aur desktop dono ke liye */}
+        <div className="flex items-center gap-2">
+          {renderLanguageMenu()}
         </div>
       </div>
     </header>
